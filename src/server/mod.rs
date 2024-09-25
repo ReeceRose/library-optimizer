@@ -1,6 +1,7 @@
 pub mod routes;
 
 use crate::server::routes::create_routes;
+
 use axum::Router;
 use tokio::net::TcpListener;
 use tower_http::{compression::CompressionLayer, trace::TraceLayer};

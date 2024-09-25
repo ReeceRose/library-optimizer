@@ -1,7 +1,6 @@
 mod config;
 mod server;
 
-use crate::config::logging;
 use notify::{recommended_watcher, RecursiveMode, Watcher};
 use std::env;
 use std::path::Path;
@@ -10,7 +9,7 @@ use tracing::{debug, error, info};
 
 #[tokio::main]
 async fn main() {
-    logging::init();
+    config::logging::init();
     let version = option_env!("BUILD_HASH").unwrap_or("dev-build");
 
     info!("Running library optimizer: {}", version);

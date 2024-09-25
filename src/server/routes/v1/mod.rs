@@ -1,5 +1,6 @@
+use crate::server::routes::v1::hello_world::hello_world_route;
+
 use axum::{routing::get, Router};
-use hello_world::hello_world_route;
 
 pub mod hello_world;
 
