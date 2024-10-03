@@ -13,10 +13,11 @@ test:
 
 dev:
 	@echo "Starting services in development mode..."
-	mkdir ./data/tv
-	mkdir ./data/movies
+	mkdir -p ./data/tv
+	mkdir -p ./data/movies
 	TV_DIR=./data/tv MOVIE_DIR=./data/movies cargo watch -x run
 
 clean:
 	@echo "Cleaning up build artifacts..."
+	rm library-optimizer.db*
 	cargo clean

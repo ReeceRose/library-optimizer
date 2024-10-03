@@ -1,4 +1,5 @@
 mod config;
+mod database;
 mod server;
 
 use notify::{recommended_watcher, RecursiveMode, Watcher};
@@ -6,6 +7,8 @@ use std::env;
 use std::path::Path;
 use std::sync::{mpsc::channel, Arc, Mutex};
 use tracing::{debug, error, info};
+
+const DB_URL: &str = "sqlite://library-optimizer.db";
 
 #[tokio::main]
 async fn main() {
@@ -15,6 +18,8 @@ async fn main() {
     info!("Running library optimizer: {}", version);
     let cpus = num_cpus::get();
     debug!("Current CPU count: {}", cpus);
+
+    let _db = database::Database::new(DB_URL).await;
 
     let rt = config::runtime::build(cpus).await;
 
